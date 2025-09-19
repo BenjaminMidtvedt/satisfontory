@@ -1,16 +1,19 @@
-#%%
 from __future__ import annotations
 
 import copy
 import json
-from collections.abc import Iterable
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import freetype
 import numpy as np
-from shapely.geometry import Polygon
 
 from parser import Line, build_rectangles_for_glyph, lines_to_world
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+
+    from shapely.geometry import Polygon
 
 
 def rectangles_to_line_segments(rectangles: Iterable[Polygon]) -> np.ndarray:
@@ -56,11 +59,12 @@ def write_blueprint(lines: list[Line], base_blueprint: Path, output_path: Path) 
     sample_object = copy.deepcopy(blueprint["objects"][1])
     blueprint["objects"] = []
 
+    rng = np.random.default_rng(12345)
     for line in lines:
         instance = copy.deepcopy(sample_object)
         instance["properties"]["mLength"]["value"] = line.length * 10
         instance["transform"]["rotation"] = line.rotation
-        jitter = np.random.uniform(-0.1, 0.1)
+        jitter = rng.uniform(-0.2, 0.2)  # small random Z jitter to avoid z-fighting
         instance["transform"]["translation"] = {
             "x": line.translation["x"] * 10,
             "y": line.translation["y"] * 10,
@@ -88,8 +92,8 @@ def main() -> None:
     geometry, rectangles = build_rectangles_for_glyph(
         face,
         char="E",
-        pixel_height=20 * scale,
-        thickness=0.75 * scale,
+        pixel_height=15 * scale,
+        thickness=0.8 * scale,
         overlap=0.0,
         min_segment_length=0.5 * scale,
         rdp_epsilon=0.0,

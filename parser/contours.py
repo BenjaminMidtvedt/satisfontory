@@ -1,11 +1,14 @@
 """Helpers for extracting FreeType glyph contours."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 import freetype
 
-from .geometry import Point
+if TYPE_CHECKING:
+    from .geometry import Point
 
 
 @dataclass(slots=True)

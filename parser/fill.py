@@ -1,9 +1,14 @@
 """Interior tiling helpers for glyph polygons."""
+
 from __future__ import annotations
 
-from collections.abc import Sequence
+from collections.abc import Iterable
+from typing import TYPE_CHECKING
 
 from shapely.geometry import GeometryCollection, LineString, MultiLineString, Polygon
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 
 def iter_line_segments_from_intersection(geometry) -> list[tuple[float, float]]:
@@ -105,7 +110,7 @@ def fill_polygon_with_rectangles(
     if glyph_polygon.is_empty:
         return []
 
-    polygons = [glyph_polygon] if glyph_polygon.geom_type == "Polygon" else list(glyph_polygon.geoms)
+    polygons = [glyph_polygon] if isinstance(glyph_polygon, Polygon) else list(glyph_polygon.geoms)
     rectangles: list[Polygon] = []
     tolerance = 1e-9
     margin = 10.0 * max(1.0, rect_width)
@@ -124,8 +129,7 @@ def fill_polygon_with_rectangles(
 
         if orientation.lower() == "vertical":
             raise NotImplementedError("Vertical fill not implemented yet.")
-        offsets = [0.0, 0.5, 0.25, 0.75, 0.125, 0.375, 0.625, 0.875]
-        for offset in offsets:
+        for offset in _generate_subdivisions(4):
             y = min_y + offset * rect_width
             while y < max_y - tolerance:
                 y0 = y
@@ -147,6 +151,14 @@ def fill_polygon_with_rectangles(
                 y += rect_width
 
     return rectangles
+
+
+def _generate_subdivisions(iterations: int) -> Iterable[float]:
+    """Generate a list of fractional subdivisions for jittering."""
+    for iteration in range(iterations):
+        divisor = 2 ** (iteration + 1)
+        for numerator in range(1, divisor, 2):
+            yield numerator / divisor
 
 
 __all__ = [

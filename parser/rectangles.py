@@ -1,4 +1,5 @@
 """Rectangle placement utilities along glyph boundaries."""
+
 from __future__ import annotations
 
 from collections.abc import Sequence
@@ -41,12 +42,16 @@ def rectangles_along_polyline(
 
     polygon = Polygon(polyline)
     polygon = polygon.segmentize(1.0)
-    working_polyline: list[Point] = list(polygon.exterior.coords)
+    working_polyline: Sequence[Point] = list(polygon.exterior.coords)
 
     while len(working_polyline) > 4 and remove_narrow:
         polygon = Polygon(working_polyline)
         working_polyline, removed_indices = remove_narrow_areas(
-            working_polyline, polygon, thickness, overlap, interior_is_right,
+            working_polyline,
+            polygon,
+            thickness,
+            overlap,
+            interior_is_right=interior_is_right,
         )
         if not removed_indices:
             break
@@ -55,7 +60,10 @@ def rectangles_along_polyline(
     if len(working_polyline) > 4:
         polygon = Polygon(working_polyline)
         polygon = polygon.simplify(0.01)
-        working_polyline = list(polygon.exterior.coords)
+        if isinstance(polygon, Polygon):
+            working_polyline = list(polygon.exterior.coords)
+        else:
+            raise RuntimeError("Unexpected geometry type after simplification.")
 
     rectangles: list[Polygon] = []
     for start, end in zip(working_polyline[:-1], working_polyline[1:]):
@@ -84,6 +92,7 @@ def remove_narrow_areas(
     polygon: Polygon,
     thickness: float,
     overlap: float,
+    *,
     interior_is_right: bool,
 ) -> tuple[list[Point], set[int]]:
     """Prune vertices that would generate invalid inward rectangles.
