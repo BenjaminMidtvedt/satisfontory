@@ -1,0 +1,229 @@
+{
+  "name": "Framed Glass Container",
+  "compressionInfo": {
+    "chunkHeaderVersion": 572662306,
+    "packageFileTag": 2653586369,
+    "maxUncompressedChunkContentSize": 131072,
+    "compressionAlgorithm": 3
+  },
+  "header": {
+    "headerVersion": 2,
+    "saveVersion": 52,
+    "buildVersion": 433351,
+    "designerDimension": {
+      "x": 4,
+      "y": 4,
+      "z": 4
+    },
+    "recipeReferences": [
+      {
+        "levelName": "",
+        "pathName": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Foundation_8x1_01.Recipe_Foundation_8x1_01_C"
+      },
+      {
+        "levelName": "",
+        "pathName": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_H.Recipe_Beam_H_C"
+      }
+    ],
+    "itemCosts": [
+      [
+        {
+          "levelName": "",
+          "pathName": "/Game/FactoryGame/Resource/Parts/Cement/Desc_Cement.Desc_Cement_C"
+        },
+        5
+      ],
+      [
+        {
+          "levelName": "",
+          "pathName": "/Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C"
+        },
+        2
+      ],
+      [
+        {
+          "levelName": "",
+          "pathName": "/Game/FactoryGame/Resource/Parts/SteelPlate/Desc_SteelPlate.Desc_SteelPlate_C"
+        },
+        2
+      ]
+    ]
+  },
+  "config": {
+    "configVersion": 4,
+    "description": "",
+    "color": {
+      "r": 0.10702300071716309,
+      "g": 0.4341540038585663,
+      "b": 0.5583410263061523,
+      "a": 1
+    },
+    "iconID": 782,
+    "referencedIconLibrary": "/Game/FactoryGame/-Shared/Blueprint/IconLibrary",
+    "iconLibraryType": "IconLibrary",
+    "lastEditedBy": [
+      {
+        "accountId": "063C6BE50301001001",
+        "displayName": "BACARDI",
+        "platformName": "STEAM"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "typePath": "/Game/FactoryGame/Buildable/Building/Foundation/Build_Foundation_8x1_01.Build_Foundation_8x1_01_C",
+      "rootObject": "Persistent_Level",
+      "instanceName": "Persistent_Level:PersistentLevel.Build_Foundation_8x1_01_C_2147093207",
+      "flags": 8,
+      "properties": {
+        "mCustomizationData": {
+          "type": "StructProperty",
+          "ueType": "StructProperty",
+          "name": "mCustomizationData",
+          "value": {
+            "type": "FactoryCustomizationData",
+            "properties": {
+              "SwatchDesc": {
+                "type": "ObjectProperty",
+                "ueType": "ObjectProperty",
+                "name": "SwatchDesc",
+                "value": {
+                  "levelName": "",
+                  "pathName": "/Game/FactoryGame/Buildable/-Shared/Customization/Swatches/SwatchDesc_Slot16.SwatchDesc_Slot16_C"
+                }
+              }
+            }
+          },
+          "subtype": "FactoryCustomizationData"
+        },
+        "mBuiltWithRecipe": {
+          "type": "ObjectProperty",
+          "ueType": "ObjectProperty",
+          "name": "mBuiltWithRecipe",
+          "value": {
+            "levelName": "",
+            "pathName": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Foundation_8x1_01.Recipe_Foundation_8x1_01_C"
+          }
+        }
+      },
+      "specialProperties": {
+        "type": "EmptySpecialProperties"
+      },
+      "trailingData": [],
+      "saveCustomVersion": 0,
+      "shouldMigrateObjectRefsToPersistent": false,
+      "parentEntityName": "",
+      "type": "SaveEntity",
+      "needTransform": true,
+      "wasPlacedInLevel": false,
+      "parentObject": {
+        "levelName": "Persistent_Level",
+        "pathName": "Persistent_Level:PersistentLevel.BuildableSubsystem"
+      },
+      "transform": {
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "w": 6.123234262925839e-17
+        },
+        "translation": {
+          "x": 0,
+          "y": 0,
+          "z": 50
+        },
+        "scale3d": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "components": []
+    },
+    {
+      "typePath": "/Game/FactoryGame/Prototype/Buildable/Beams/Build_Beam_H.Build_Beam_H_C",
+      "rootObject": "Persistent_Level",
+      "instanceName": "Persistent_Level:PersistentLevel.Build_Beam_H_C_2147414841",
+      "flags": 8,
+      "properties": {
+        "mLength": {
+          "type": "FloatProperty",
+          "ueType": "FloatProperty",
+          "name": "mLength",
+          "value": 200
+        },
+        "mColorSlot": {
+          "type": "ByteProperty",
+          "ueType": "ByteProperty",
+          "name": "mColorSlot",
+          "value": {
+            "type": "None",
+            "value": 0
+          }
+        },
+        "mCustomizationData": {
+          "type": "StructProperty",
+          "ueType": "StructProperty",
+          "name": "mCustomizationData",
+          "value": {
+            "type": "FactoryCustomizationData",
+            "properties": {
+              "SwatchDesc": {
+                "type": "ObjectProperty",
+                "ueType": "ObjectProperty",
+                "name": "SwatchDesc",
+                "value": {
+                  "levelName": "",
+                  "pathName": "/Game/FactoryGame/Buildable/-Shared/Customization/Swatches/SwatchDesc_Slot0.SwatchDesc_Slot0_C"
+                }
+              }
+            }
+          },
+          "subtype": "FactoryCustomizationData"
+        },
+        "mBuiltWithRecipe": {
+          "type": "ObjectProperty",
+          "ueType": "ObjectProperty",
+          "name": "mBuiltWithRecipe",
+          "value": {
+            "levelName": "",
+            "pathName": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_H.Recipe_Beam_H_C"
+          }
+        }
+      },
+      "specialProperties": {
+        "type": "EmptySpecialProperties"
+      },
+      "trailingData": [],
+      "saveCustomVersion": 0,
+      "shouldMigrateObjectRefsToPersistent": false,
+      "parentEntityName": "",
+      "type": "SaveEntity",
+      "needTransform": true,
+      "wasPlacedInLevel": false,
+      "parentObject": {
+        "levelName": "Persistent_Level",
+        "pathName": "Persistent_Level:PersistentLevel.BuildableSubsystem"
+      },
+      "transform": {
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "translation": {
+          "x": -100,
+          "y": 0,
+          "z": 100.0014419555664
+        },
+        "scale3d": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "components": []
+    }
+  ]
+}

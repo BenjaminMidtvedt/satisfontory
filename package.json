@@ -1,0 +1,16 @@
+{
+  "name": "satisbp",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parse": "node parse-blueprint.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@etothepii/satisfactory-file-parser": "^3.1.2"
+  }
+}

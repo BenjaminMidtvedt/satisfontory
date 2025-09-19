@@ -1,0 +1,69 @@
+[project]
+name = "satisfontory"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "bezier>=2024.6.20",
+    "freetype-py>=2.5.1",
+    "ipykernel>=6.30.1",
+    "matplotlib>=3.10.6",
+    "numpy>=2.3.2",
+    "pillow>=11.3.0",
+    "pybind11-rdp>=0.1.5",
+    "ruff>=0.13.1",
+    "scikit-image>=0.25.2",
+    "scipy>=1.16.1",
+    "shapely>=2.1.1",
+]
+
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torchvision = [
+  { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+
+[tool.ruff.lint]
+extend-select = [
+    "F",        # Pyflakes rules
+    "W",        # PyCodeStyle warnings
+    "E",        # PyCodeStyle errors
+    "I",        # Sort imports properly
+    "UP",       # Warn if certain things can changed due to newer Python versions
+    "C4",       # Catch incorrect use of comprehensions, dict, list, etc
+    "FA",       # Enforce from __future__ import annotations
+    "ISC",      # Good use of string concatenation
+    "ICN",      # Use common import conventions
+    "RET",      # Good return practices
+    "SIM",      # Common simplification rules
+    "TID",      # Some good import practices
+    "TC",       # Enforce importing certain types in a TYPE_CHECKING block
+    "PTH",      # Use pathlib instead of os.path
+    "TD",       # Be diligent with TODO comments
+    "NPY",      # Some numpy-specific things
+    "A",   # detect shadowed builtins
+    "BLE", # disallow catch-all exceptions
+    "S",   # disallow things like "exec";
+    "COM", # enforce trailing comma rules
+    "DTZ", # require strict timezone manipulation with datetime
+    "FBT", # detect boolean traps
+    "N",   # enforce naming conventions, e.g. ClassName vs function_name
+]
+ignore = ["S101"]
+[tool.ruff.lint.pylint]
+max-args = 10
+
+
+[tool.ruff]
+line-length = 120
+cache-dir = "./ruff_cache"
+
+
+[tool.uv]
+cache-dir = "./.uv_cache"
