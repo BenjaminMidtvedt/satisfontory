@@ -1,7 +1,7 @@
 """High-level glyph pipeline orchestration."""
+
 from __future__ import annotations
 
-import freetype
 from shapely.geometry import MultiPolygon, Polygon
 from shapely.ops import unary_union
 
@@ -11,7 +11,7 @@ from .rectangles import extend_rectangles, rectangles_along_polyline
 
 
 def build_rectangles_for_glyph(
-    face: freetype.Face,
+    face_path: str,
     char: str,
     pixel_height: int = 512,
     thickness: float = 6.0,
@@ -20,6 +20,7 @@ def build_rectangles_for_glyph(
     rdp_epsilon: float = 0.0,
     fill_orientation: str = "horizontal",
     safety_inset: float = 1.0,
+    backend: str = "fonttools",
 ) -> tuple[Polygon | MultiPolygon, list[Polygon]]:
     """Run the full glyph processing pipeline.
 
@@ -51,12 +52,14 @@ def build_rectangles_for_glyph(
     list of Polygon
         Individual rectangles used to approximate the glyph.
     """
+
     outline: GlyphOutline = get_glyph_outline(
-        face,
+        face_path,
         char,
         pixel_height,
         min_segment_length=min_segment_length,
         rdp_epsilon=rdp_epsilon,
+        backend=backend,
     )
 
     glyph_polygon = outline_to_polygon(outline)

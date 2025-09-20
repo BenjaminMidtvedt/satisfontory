@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-import freetype
 import numpy as np
 
 from parser import Line, build_rectangles_for_glyph, lines_to_world
@@ -86,11 +85,9 @@ def main() -> None:
     None
         This function executes for its side effects.
     """
-    font_path = Path("fonts/LavishlyYours-Regular.ttf")
-    face = freetype.Face(str(font_path))
     scale = 10
     geometry, rectangles = build_rectangles_for_glyph(
-        face,
+        "fonts/Roboto-Medium.ttf",
         char="E",
         pixel_height=15 * scale,
         thickness=0.8 * scale,
@@ -106,6 +103,14 @@ def main() -> None:
         return
 
     line_segments = rectangles_to_line_segments(rectangles)
+
+    # plot the linesegments as a skeleton for visual verification
+    import matplotlib.pyplot as plt
+
+    for segment in line_segments:
+        plt.plot(-segment[:, 0], segment[:, 1], "b-", linewidth=15, solid_capstyle="butt", alpha=0.5)
+    plt.gca().set_aspect("equal")
+    plt.show()
     base_blueprint = Path("base_blueprint/New Blueprint.json")
     output_path = Path("base_blueprint/New Blueprint 2.json")
     write_blueprint(lines_to_world(line_segments), base_blueprint, output_path)
