@@ -1,10 +1,10 @@
 """Glyph outline helpers built on top of FreeType."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
 
 import freetype
-from pybind11_rdp import rdp
 from shapely.geometry import Polygon
 
 from .contours import freetype_outline_to_contours
@@ -73,8 +73,6 @@ def get_glyph_outline(
         start_index += len(contour.points)
         if len(polyline) < 4:
             continue
-        if rdp_epsilon > 0.0:
-            polyline = [tuple(point) for point in rdp(polyline, epsilon=rdp_epsilon)]  # type: ignore[arg-type]
         if polygon_is_ccw(polyline) ^ reversed_fill:
             exteriors.append(polyline)
         else:

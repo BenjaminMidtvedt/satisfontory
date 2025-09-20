@@ -11,13 +11,10 @@ dependencies = [
     "ipykernel>=6.30.1",
     "matplotlib>=3.10.6",
     "numpy>=2.3.2",
-    "pillow>=11.3.0",
     "pybind11-rdp>=0.1.5",
     "pytest>=8.4.2",
     "pytest-cov>=7.0.0",
     "ruff>=0.13.1",
-    "scikit-image>=0.25.2",
-    "scipy>=1.16.1",
     "shapely>=2.1.1",
 ]
 
